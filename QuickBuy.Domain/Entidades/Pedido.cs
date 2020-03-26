@@ -31,7 +31,9 @@ namespace QuickBuy.Domain.Entidades
             
             if (string.IsNullOrEmpty(CEP))
                 AdicionarCritica("Critica - Pedido não pode ficar sem CEP");
-            
+            if (FormaPagamentoId == 0)
+                AdicionarCritica("Critica - Não foi identificado o produto");
+
         }
     }
 }

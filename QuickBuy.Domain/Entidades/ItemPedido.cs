@@ -8,8 +8,10 @@
 
         public override void Validate()
         {
-            if (!ItensPedido.Any())
-                AdicionarCritica("Critica - Pedido não pode ficar sem Item de pedido");
+            if (ProdutoId == 0)
+                AdicionarCritica("Critica - Não foi identificado o produto");
+            if (Quantidade == 0)
+                AdicionarCritica("Critica - Quantidade não definida");
         }
     }
 }

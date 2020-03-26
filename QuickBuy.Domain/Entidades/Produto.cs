@@ -9,7 +9,11 @@
 
         public override void Validate()
         {
-            throw new System.NotImplementedException();
+            if (string.IsNullOrEmpty(Nome))
+                AdicionarCritica("Critica - Nome não inserido");
+            if (Preco == 0)
+                AdicionarCritica("Critica - Valor não inserido");
+
         }
     }
 }
