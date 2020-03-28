@@ -5,7 +5,7 @@ namespace QuickBuy.Domain.Entidades
 {
     public abstract class Entidade
     {
-        private string mensagem;
+        //private string mensagem;
 
         public List<string> _mensagensValidacao { get; set; }
         private List<string> mensagemValidacao 
@@ -17,7 +17,7 @@ namespace QuickBuy.Domain.Entidades
         {
             mensagemValidacao.Clear();
         }
-        protected void AdicionarCritica(string v)
+        protected void AdicionarCritica(string mensagem)
         {
             mensagemValidacao.Add(mensagem);
         }
