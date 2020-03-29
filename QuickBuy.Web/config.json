@@ -1,0 +1,8 @@
+{
+  "Chave": "ValorCave",
+  "ConnectionStrings": {
+    "QuickBuyDB": "server=localhost;uid=root;pwd=F&rn@nd0;database=QuickBuyDB",
+    "SqlServerConnection": ""
+  }
+}
+
