@@ -16,17 +16,22 @@ namespace QuickBuy.Web
         public Startup(IConfiguration configuration)
         {
             var builder = new ConfigurationBuilder();
+
+            //ADICIONAR ARQUIVO CONFIG.JSON NAS CONFIGURAÇÕES
             builder.AddJsonFile("config.json",optional:false, reloadOnChange:true);
             Configuration = builder.Build();
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        //This method gets called by the runtime.Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //Referencia ao dbcontext configurado no projeto Repository para conectar ao banco de dados com a conexão configurada no confi.json
             var connectionString = Configuration.GetConnectionString("QuickBuyDB");
             services.AddDbContext<QuickBuyContexto>(option => 
-                option.UseMySql(connectionString,m => 
+                option.UseLazyLoadingProxies().
+                UseMySql(connectionString,m => 
                     m.MigrationsAssembly("QuickBuy.Repository")) );
 
             // In production, the Angular files will be served from this directory
