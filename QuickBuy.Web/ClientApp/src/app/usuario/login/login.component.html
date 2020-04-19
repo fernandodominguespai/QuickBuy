@@ -1,0 +1,27 @@
+<div class="text-center">
+  <form class="form-signin">
+    <h1 class="h4 mb-2 login">Login do Cliente</h1>
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="email" id="inputEmail"
+           name="email"
+           placeholder="Informe o seu Email"
+           class="form-control mb-2"
+           [(ngModel)]="usuario.email"/>
+    <label for="inputSenha" class="sr-only">Senha</label>
+    <input type="password" id="inputSenha"
+           name="senha"
+           placeholder="Informe a senha com x caracteres"
+           class="form-control mb-2"
+           [(ngModel)]="usuario.senha"/>
+    <button class="btn btn-primary btn-block" type="submit" (click)="entrar()">Entrar</button>
+    <!--<img [src]="enderecoImagem" [title]="titulo"/>
+    
+    {{senha}}-->
+    <img src="..\..\..\assets\img\quick-b-logo.jpg" />
+
+    <div class="alert alert-primary" role="alert" *ngIf="usuarioAutenticado">
+      Usuario Autenticado !
+    </div>
+  </form>
+
+</div>
