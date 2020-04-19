@@ -18,10 +18,11 @@ export class LoginComponent {
   }
 
   entrar() {
-    if (this.usuario.email == 'fer' && this.usuario.senha == '123') {
+
+    if (this.usuario.email == 'fer@eu' && this.usuario.senha == '123') {
       this.usuarioAutenticado = true;
     }
-    //alert(this.usuario.email + ' ' + this.usuario.senha);
+    alert(this.usuario.email + ' ' + this.usuario.senha);
   }
   //public email = "";
   //public senha = "";
