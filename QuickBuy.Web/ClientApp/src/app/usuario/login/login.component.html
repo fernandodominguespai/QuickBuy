@@ -44,8 +44,12 @@
     </div>
     <button class="btn btn-primary btn-block" type="submit" (click)="entrar()">Entrar</button>
     <!--<img [src]="enderecoImagem" [title]="titulo"/>
-    
     {{senha}}-->
+
+  <div class="alert alert-danger" *ngIf="mensagem">
+    {{mensagem}}
+  </div>
+
     <img src="..\..\..\assets\img\quick-b-logo.jpg" />
 
     <div class="alert alert-primary" role="alert" *ngIf="usuarioAutenticado">

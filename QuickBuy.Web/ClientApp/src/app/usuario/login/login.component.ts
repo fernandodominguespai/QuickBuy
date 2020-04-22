@@ -12,6 +12,7 @@ import { UsuarioServico } from "../../servicos/usuario/usuario.servico";
 export class LoginComponent implements OnInit {
   public usuario;
   public returnUrl: string;
+  public mensagem: string;
 
   //public usuarioAutenticado: boolean;
   //public usuarios = ["usuario1", "usuario2", "usuario3", "usuario4", "usuario5"];
@@ -25,19 +26,33 @@ export class LoginComponent implements OnInit {
   }
 
   entrar() {
-
     this.usuarioServico.verificarUsuario(this.usuario)
       .subscribe(
         data => {
+          // essa linha será executada no caso de retorno sem erros
+          var usuarioRetorno: Usuario;
+          usuarioRetorno = data;
+          sessionStorage.setItem("usuario-autenticado", "1");
+          sessionStorage.setItem("email-usuario", usuarioRetorno.email);
+
+          if (this.returnUrl == null) {
+            this.router.navigate(['/']);
+          }
+          else {
+            this.router.navigate([this.returnUrl]); 
+          }
+          
+          //console.log(data);
         },
         err => {
+          console.log(err.error);
+          this.mensagem = err.error;
         }
       );
 
     //if (this.usuario.email == 'fer@eu' && this.usuario.senha == '123') {
     //  this.usuarioAutenticado = true;
-    //  sessionStorage.setItem("usuario-Autenticado", "1");
-    //  this.router.navigate([this.returnUrl]);
+    
     //}
     //alert(this.usuario.email + ' ' + this.usuario.senha);
   }

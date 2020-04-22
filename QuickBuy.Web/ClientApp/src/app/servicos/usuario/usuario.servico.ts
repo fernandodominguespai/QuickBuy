@@ -23,6 +23,6 @@ export class UsuarioServico {
     }
 
     //this.baseURL = raiz do site da aplicação - exemplo http://www.quickbuy.com/
-    return this.http.post<Usuario>(this.baseURL + "api/usuario", body, { headers });
+    return this.http.post<Usuario>(this.baseURL + "api/usuario/verificarUsuario", body, { headers });
   }
 }

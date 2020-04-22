@@ -26,11 +26,11 @@ export class NavMenuComponent {
     //  return true;
     //}
     //return false;
-    return sessionStorage.getItem("usuario-Autenticado") == "1";
+    return sessionStorage.getItem("usuario-autenticado") == "1";
   }
 
   public sair() {
-    sessionStorage.setItem("usuario-Autenticado", "");
+    sessionStorage.setItem("usuario-autenticado", "");
     this.router.navigate(['/']);
   }
 
