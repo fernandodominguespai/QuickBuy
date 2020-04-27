@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   public usuario;
   public returnUrl: string;
   public mensagem: string;
+  private ativar_spinner: boolean;
 
   //public usuarioAutenticado: boolean;
   //public usuarios = ["usuario1", "usuario2", "usuario3", "usuario4", "usuario5"];
@@ -23,9 +24,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.returnUrl = this.activatedRouter.snapshot.queryParams['returnUrl'];
     this.usuario = new Usuario();
+    inputEmail
   }
 
   entrar() {
+    this.ativar_spinner = true;
     this.usuarioServico.verificarUsuario(this.usuario)
       .subscribe(
         usuario_json => {
@@ -44,6 +47,7 @@ export class LoginComponent implements OnInit {
         err => {
           console.log(err.error);
           this.mensagem = err.error;
+          this.ativar_spinner = false;
         }
       );
 

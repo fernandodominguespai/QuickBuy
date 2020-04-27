@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QuickBuy.Domain.Contratos;
 using QuickBuy.Domain.Entidades;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,12 @@ namespace QuickBuy.Web.Controllers
     [Route("api/[Controller]")]
     public class UsuarioController: Controller
     {
+        private readonly IUsuarioRepository _usuarioRepositorio;
+        public UsuarioController(IUsuarioRepository usuarioRepositorio)
+        {
+            _usuarioRepositorio = usuarioRepositorio;
+        }
+
         [HttpGet]
         public ActionResult Get()
         {
@@ -29,10 +36,16 @@ namespace QuickBuy.Web.Controllers
         {
             try
             {
-                if (usuario.Email == "fer@eu" && usuario.Senha == "123")
-                    return Ok(usuario);
-                else
-                    return BadRequest("Usuário ou senha inválido");
+                var usuarioRetorno = _usuarioRepositorio.Obter(usuario.Email, usuario.Senha);
+                if (usuarioRetorno != null)
+                    return Ok(usuarioRetorno);
+
+                return BadRequest("Usuário ou senha inválido");
+
+                //if (usuario.Email == "fer@eu" && usuario.Senha == "123")
+                //    return Ok(usuario);
+                //else
+                //    return BadRequest("Usuário ou senha inválido");
             }
             catch (Exception ex)
             {
