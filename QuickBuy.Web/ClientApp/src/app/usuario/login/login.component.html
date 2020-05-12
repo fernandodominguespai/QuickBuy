@@ -47,8 +47,10 @@
       Entrar
     </button>
 
-    <!--<img [src]="enderecoImagem" [title]="titulo"/>
-    {{senha}}-->
+    <div>
+      Novo por aqui ?
+      <a [routerLink]='["/novo-usuario"]'>Cadastre-se</a>
+    </div>
 
   <div class="alert alert-danger" *ngIf="mensagem">
     {{mensagem}}
