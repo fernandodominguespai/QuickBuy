@@ -53,4 +53,11 @@ export class ProdutoServico implements OnInit {
   public obterProduto(produtoId: number): Observable<ProdutoModel> {
     return this.http.get<ProdutoModel>(this._baseUrl + "api/produto/obter");
   }
+
+  public enviarArquivo(arquivoSelecionado: File): Observable<boolean> {
+    const formData: FormData = new FormData();
+    formData.append("arquivoEnviado",arquivoSelecionado,arquivoSelecionado.name);
+    return this.http.post<boolean>(this._baseUrl + "api/produto/enviarArquivo", formData);
+  }
+
 }

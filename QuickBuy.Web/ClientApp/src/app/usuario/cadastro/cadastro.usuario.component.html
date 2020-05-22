@@ -61,10 +61,10 @@
       </div>
     </div>
 
-    <label for="inputSobreNome" class="sr-only">Sobre Nome</label>
+    <label for="inputSobreNome" class="sr-only">Sobrenome</label>
     <input type="text" id="inputSobreNome"
            name="sobreNome"
-           placeholder="Sobre Nome"
+           placeholder="Sobrenome"
            class="form-control mb-2"
            [ngClass]="{
               'is-invalid':sobreNome.invalid && (sobreNome.dirty || sobreNome.touched),
@@ -88,7 +88,7 @@
     <div class="alert alert-danger" *ngIf="mensagem">
       {{mensagem}}
     </div>
-    <div class="alert alert-sucess" *ngIf="usuarioCadastrado">
+    <div class="alert alert-success" role="alert" *ngIf="usuarioCadastrado">
       Usuario cadastrado com sucesso!
       <a class="alert-link" [routerLink]='["/entrar"]'>Clique aqui</a> para entrar no sistema com a sua conta!
     </div>
