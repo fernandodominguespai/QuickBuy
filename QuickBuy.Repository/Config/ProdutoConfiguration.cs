@@ -21,7 +21,12 @@ namespace QuickBuy.Repository.Config
                 .HasMaxLength(200);
             builder
                 .Property(u => u.Preco)
+                .HasColumnType("decimal(12,4)")
                 .IsRequired();
+            builder
+                .Property(u => u.NomeArquivo)
+                .HasMaxLength(200);
+
 
         }
     }

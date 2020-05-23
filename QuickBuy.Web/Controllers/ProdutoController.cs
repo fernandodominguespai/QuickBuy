@@ -43,6 +43,11 @@ namespace QuickBuy.Web.Controllers
         {
             try
             {
+                produto.Validate();
+                if (!produto.EhValido)
+                {
+                    return BadRequest(produto.ObterMensagensValidacao());
+                }
                 _produtoRepository.Adicionar(produto);
                 return Created("api/produto",produto);
             }
@@ -61,23 +66,29 @@ namespace QuickBuy.Web.Controllers
                 var formFile = _httpContextAccessor.HttpContext.Request.Form.Files["arquivoEnviado"];
                 var nomeArquivo = formFile.FileName;
                 var extensaoArquivo = nomeArquivo.Split(".").Last();
-                var arrayNomeCompacto = Path.GetFileNameWithoutExtension(nomeArquivo).Take(10).ToArray();
-                var novoNomeArquivo = new string(arrayNomeCompacto).Replace(" ", "-") + "." + extensaoArquivo;
-                var pastaArquivos = _hostingEnvironment.WebRootPath + "\\arquivos\\";
+                string novoNomeArquivo = GerarNovoNomeArquivo(nomeArquivo, extensaoArquivo); var pastaArquivos = _hostingEnvironment.WebRootPath + "\\arquivos\\";
                 var nomeCompleto = pastaArquivos + novoNomeArquivo;
 
-                using (var streamArquivo = new FileStream(nomeCompleto,FileMode.Create))
+                using (var streamArquivo = new FileStream(nomeCompleto, FileMode.Create))
                 {
                     formFile.CopyTo(streamArquivo);
                 }
 
-                return Ok("Arquivo Enviado Com Sucesso!");
+                return Json(novoNomeArquivo);
             }
             catch (Exception ex)
             {
 
                 return BadRequest(ex.ToString());
             }
+        }
+
+        private static string GerarNovoNomeArquivo(string nomeArquivo, string extensaoArquivo)
+        {
+            var arrayNomeCompacto = Path.GetFileNameWithoutExtension(nomeArquivo).Take(10).ToArray();
+            var novoNomeArquivo = new string(arrayNomeCompacto).Replace(" ", "-");
+            novoNomeArquivo = $"{novoNomeArquivo}_{DateTime.Now.Year}{DateTime.Now.Month}{DateTime.Now.Day}{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}.{extensaoArquivo}";
+            return novoNomeArquivo;
         }
     }
 }
