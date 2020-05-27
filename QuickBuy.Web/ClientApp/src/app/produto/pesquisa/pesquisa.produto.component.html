@@ -1,0 +1,44 @@
+<h1 class="h4 titulo mb-4">Pesquisa de Produtos</h1>
+<p *ngIf="!produtos">Carregando Produtos...</p>
+
+<button class="btn btn-primary mb-2" (click)="adicionarProduto()">
+  Adicionar Produto
+</button>
+
+<table class="table table-hover" *ngIf="produtos">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Preço</th>
+      <th>Imagem</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of produtos">
+      <td>{{p.nome}}</td>
+      <td class="descricao">{{p.descricao}}</td>
+      <td class="preco">R$ {{p.preco}}</td>
+      <td>
+        <img class="imagem img-fluid" src="../../../../../arquivos/{{p.nomeArquivo}}" />
+        <!--<img src="C:\Users\ferna\source\repos\QuickBuy\QuickBuy.Web\wwwroot\arquivos\iphone7_2020523191919.jpg" />-->
+      </td>
+      <td>
+        <button class="btn btn-success btn-sm" (click)="editarProduto(p)">
+          Editar
+        </button></td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="deletarProduto(p)">
+          Deletar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!--estrutura de repetição
+<div *ngFor="let p of produtos">
+  {{p.nome}}||{{p.descricao}}||{{p.preco}}||{{p.nomeArquivo}}
+</div>-->

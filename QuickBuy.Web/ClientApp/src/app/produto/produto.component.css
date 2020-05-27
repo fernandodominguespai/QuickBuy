@@ -5,6 +5,9 @@
 .custom-file-input:lang(en) ~ .custom-file-label::after {
   content: "Selecionar";
 }
+.btnCadastrar{
+    margin-right: 4px;
+}
 /*.invalid-feedback {
   display:block;
 }

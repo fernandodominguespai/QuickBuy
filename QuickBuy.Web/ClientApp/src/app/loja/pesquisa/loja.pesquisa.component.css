@@ -1,0 +1,16 @@
+.titulo {
+  color: #666;
+}
+
+.imagem {
+  width: 200px;
+  height: 200px;
+}
+
+.descricao {
+  width: 50%;
+}
+
+.preco {
+  width: 10%;
+}

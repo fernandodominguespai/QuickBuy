@@ -29,7 +29,7 @@ namespace QuickBuy.Web.Controllers
         {
             try
             {
-                return Ok(_produtoRepository.ObterTodos());
+                return Json(_produtoRepository.ObterTodos());
             }
             catch (Exception ex)
             {
@@ -48,8 +48,32 @@ namespace QuickBuy.Web.Controllers
                 {
                     return BadRequest(produto.ObterMensagensValidacao());
                 }
-                _produtoRepository.Adicionar(produto);
+                if (produto.Id > 0)
+                {
+                    _produtoRepository.Atualizar(produto);
+                }
+                else
+                {
+                    _produtoRepository.Adicionar(produto);
+                }
+                
                 return Created("api/produto",produto);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.ToString());
+            }
+        }
+
+        [HttpPost("Deletar")]
+        public IActionResult Deletar([FromBody]Produto produto)
+        {
+            try
+            {
+                //produto recebido do FromBody, deve ter a propriedade Id > 0
+                _produtoRepository.Remover(produto);
+                return Json(_produtoRepository.ObterTodos());
             }
             catch (Exception ex)
             {
@@ -82,7 +106,6 @@ namespace QuickBuy.Web.Controllers
                 return BadRequest(ex.ToString());
             }
         }
-
         private static string GerarNovoNomeArquivo(string nomeArquivo, string extensaoArquivo)
         {
             var arrayNomeCompacto = Path.GetFileNameWithoutExtension(nomeArquivo).Take(10).ToArray();
