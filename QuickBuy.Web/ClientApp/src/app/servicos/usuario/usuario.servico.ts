@@ -27,6 +27,10 @@ export class UsuarioServico {
     return this._usuario != null && this.usuario.email != "" && this.usuario.senha != "";
   }
 
+  public usuario_administrador(): boolean {
+    return this.usuario_autenticado() && this.usuario.ehAdministrador;
+  }
+
   public limpar_sessao() {
     sessionStorage.setItem("usuario-autenticado", "");
     this._usuario = null;
