@@ -33,6 +33,7 @@ export class LojaCarrinhoCompras {
       localStorage.setItem("produtoLocaStorage", JSON.stringify(this.produtos));
     }
   }
+
   public atualizar(produtos: ProdutoModel[]) {
     localStorage.setItem("produtoLocaStorage", JSON.stringify(produtos));
   }

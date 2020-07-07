@@ -28,7 +28,6 @@ export class LojaEfetivarComponent implements OnInit {
   }
 
   public atualizarPreco(produto: ProdutoModel, quantidade: number) {
-
     if (!produto.precoOriginal) {
       produto.precoOriginal = produto.preco;
     }
@@ -36,17 +35,18 @@ export class LojaEfetivarComponent implements OnInit {
       quantidade = 1;
       produto.quantidade = quantidade;
     }
-
     produto.preco = produto.precoOriginal * quantidade;
 
     this.carrinhoCompras.atualizar(this.produtos);
-    this.atualizarTotal();
+      this.atualizarTotal();
   }
+
   public remover(produto: ProdutoModel) {
     this.carrinhoCompras.removerProduto(produto);
     this.produtos = this.carrinhoCompras.obterProdutos();
     this.atualizarTotal();
   }
+
   public atualizarTotal() {
     this.total = this.produtos.reduce((acc, produto) => acc + produto.preco, 0);
   }
