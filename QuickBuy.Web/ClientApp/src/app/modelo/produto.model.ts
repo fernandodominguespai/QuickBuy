@@ -4,4 +4,6 @@ export class ProdutoModel {
   descricao: string;
   preco: number;
   nomeArquivo: string;
+  precoOriginal: number;
+  quantidade: number;
 }
