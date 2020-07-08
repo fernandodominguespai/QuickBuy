@@ -28,7 +28,9 @@ namespace QuickBuy.Web
         //This method gets called by the runtime.Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //Referencia ao dbcontext configurado no projeto Repository para conectar ao banco de dados com a conexão configurada no confi.json
@@ -40,6 +42,7 @@ namespace QuickBuy.Web
 
             services.AddScoped<IProdutoRepository, ProdutoRepositorio>();
             services.AddScoped<IUsuarioRepository, UsuarioRepositorio>();
+            services.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

@@ -73,13 +73,13 @@ export class LojaEfetivarComponent implements OnInit {
 
     let pedido = new Pedido();
     pedido.usuarioId = this.usuarioServico.usuario.id;
-    pedido.cep = "122323";
+    pedido.cep = "05661020";
     pedido.cidade = "Sao Paulo";
     pedido.estado = "Sao Paulo ";
     pedido.dataPrevisaoEntrega = new Date();
-    pedido.formaPagamentoId = 1;
+    pedido.formaPagamentoId = 2;
     pedido.numeroEndereco = "12";
-    pedido.enderecoCompleto = "akjdhajsdhajshdjas";
+    pedido.enderecoCompleto = "Rua Antonio Julio dos Santos";
 
     this.produtos = this.carrinhoCompras.obterProdutos();
 
@@ -89,6 +89,7 @@ export class LojaEfetivarComponent implements OnInit {
 
       if (!produto.quantidade)
         produto.quantidade = 1;
+
       itemPedido.quantidade = produto.quantidade;
 
       pedido.itensPedido.push(itemPedido);

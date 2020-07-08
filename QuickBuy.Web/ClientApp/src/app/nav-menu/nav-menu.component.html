@@ -20,7 +20,7 @@
             <a class="nav-link text-dark" [routerLink]='["/entrar"]'>Entrar</a>
           </li>
 
-          <li class="nav-item dropdown" *ngIf="usuarioLogado()" >
+          <li class="nav-item dropdown" *ngIf="usuarioLogado()">
             <a class="nav-link text-dark dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" href="#"
                id="linkMenu" data-toggle="dropdown">{{usuario.nome}}</a>
 
@@ -29,9 +29,15 @@
             </ul>
           </li>
 
+          <li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="temItensCarrinhoCompras()">
+            <a class="nav-link text-dark" [routerLink]='["/loja-efetivar"]'>
+              <img src="..\..\..\assets\img\carrinhoCompraIcone.png" style="width:25px; height:25px"/>
+            </a>
+          </li>
+
           <!--<li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="usuarioLogado()">
-            <a class="nav-item nav-link text-dark" [routerLink]='["/sair"]' (click)="sair()">Sair</a>
-          </li>-->
+    <a class="nav-item nav-link text-dark" [routerLink]='["/sair"]' (click)="sair()">Sair</a>
+  </li>-->
         </ul>
       </div>
     </div>
